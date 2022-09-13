@@ -1,5 +1,13 @@
 from django import forms
 from django.contrib.auth.models import User
+from App.models import Project
+
+class ProjectForm(forms.ModelForm):
+    """Provides form for Project model"""
+
+    class Meta:
+        model = Project
+        fields = ['semester', 'course_name', 'project_name', 'project_description', 'member', 'faculty','student_mentor', 'file_upload']
 
 
 class LoginForm(forms.Form):
@@ -10,7 +18,7 @@ class LoginForm(forms.Form):
 
     class Meta:
         model = User
-        fields = ['email', 'password']
+        fields = ['username', 'password']
 
 
 class RegisterForm(forms.ModelForm):

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="x">
+    <h1>{{ project.title }}</h1>
+    <p>Published on: {{ project.date }}</p>
+  </div>
+  <div class="y">
+    <p>Semester: {{ project.semester }}<p>
+  </div>
+ <div class="y">
+    <p>Course: {{ project.course_name }}<p>
+  </div>
+  <div class="y">
+    <p>Made by: {{ project.member }}<p>
+  </div>
+  <div class="y">
+    <p>{% if project.faculty %}Faculty: {{ project.faculty }}{% endif %}<p>
+  </div>
+  <div class="y">
+    <p>Description: {{ project.project_description }}<p>
+  </div>
+  <div class="y">
+    <p>{% if project.student_mentor %}Student Mentor: {{ project.student_mentor }}{% endif %}<p>
+  </div>
+
+   <div class="y">
+
+  {% if project.file_upload %}
+    <p>Attachement: <a href="/{{project.file_upload.url}}" target="_blank">{{ project.file_upload }}</a><p>
+  {% endif %}
+  </div>
+  
+  {% if user.is_authenticated %}
+      <a class="btn btn-primary" href="{% url "App:liked" project.pk %}"><span class="glyphicon glyphicon-pencil">{{project.likes.count}}Likes</span></a>
+      <a class="btn btn-primary" href="{% url "App:delete" project.pk %}"><span class="glyphicon glyphicon-remove">Delete</span></a>
+  {% endif %}
+
+{% endblock %}
